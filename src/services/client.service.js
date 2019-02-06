@@ -5,7 +5,7 @@ const ClientService = {
 
     findAllClients() {
 
-        return db.client.findAll({include: [db.address, db.environment]});
+        return db.client.findAll({include: [{ model: db.address}, { model: db.environment, include: [db.device]}]});
 
     },
 
@@ -18,7 +18,7 @@ const ClientService = {
                 address: {
                     city: params.address.city,
                     district: params.address.district,
-                    zip_code: params.address.zip_code,
+                    zipCode: params.address.zipCode,
                     street: params.address.street,
                     number: params.address.number,
                     complement: params.address.complement

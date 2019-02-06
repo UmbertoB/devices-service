@@ -9,7 +9,9 @@ const environmentService = {
             {
                 title: params.title,
                 clientId: params.clientId,
-            });
+                device: {}
+
+            }, { include: [db.device]});
 
     }
 

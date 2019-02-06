@@ -1,9 +1,9 @@
 const Router = require('express')
-const ClientController = require('../controllers/client.controller');
+const clientController = require('../controllers/client.controller');
 const clientRouter = Router()
 
-clientRouter.get('/', ClientController.getPatientsList);
+clientRouter.get('/', clientController.getClientList);
 
-clientRouter.post('/', ClientController.postCreateClient);
+clientRouter.post('/', clientController.postCreateClient);
 
 module.exports = clientRouter;

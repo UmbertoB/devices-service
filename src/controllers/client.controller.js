@@ -1,9 +1,9 @@
 const validationResult = require('express-validator/check')['validationResult'];
 const clientService = require('../services/client.service');
 
-const ClientController = {
+const clientController = {
 
-    async getPatientsList(req, res) {
+    async getClientList(req, res) {
 
         try {
 
@@ -16,8 +16,6 @@ const ClientController = {
             res.status(200).send(responseBundle);
 
         } catch (err) {
-            console.log(err);
-            
             res.status(400).send({ error: true, msg: err.name });
         }
     },
@@ -42,4 +40,4 @@ const ClientController = {
 
 }
 
-module.exports = ClientController;
+module.exports = clientController;

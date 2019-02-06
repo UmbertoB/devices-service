@@ -18,10 +18,9 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     complement: {
-      type: DataTypes.STRING,
-      allowNull: false
+      type: DataTypes.STRING
     },
-    zip_code: {
+    zipCode: {
       type: DataTypes.STRING,
       allowNull: false
     }
