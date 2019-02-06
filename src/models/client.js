@@ -1,13 +1,19 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const client = sequelize.define('client', {
-    name: DataTypes.STRING,
-    phone: DataTypes.STRING
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    phone: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }
   }, {});
-  client.associate = function(models) {
-    client.hasOne(models.address, { onDelete: 'cascade' });
+  client.associate = function (models) {
+    client.hasOne(models.address, { onDelete: 'cascade', allowNull: false });
 
-    client.hasMany(models.environment, { onDelete: 'cascade', foreignKey:'clientId' });
+    client.hasMany(models.environment, { onDelete: 'cascade', foreignKey: 'clientId', allowNull: false });
 
 
   };

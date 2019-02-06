@@ -9,21 +9,26 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       city: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       district: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       street: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       number: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       complement: {
         type: Sequelize.STRING
       },
-      zip_code: {
+      zipCode: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       createdAt: {
