@@ -37,7 +37,11 @@ const ClientService = {
                 include: [db.address]
             });
 
-    }
+    },
+
+    countClients() {
+        return db.client.count()
+    },
 
 }
 

@@ -1,5 +1,5 @@
 const validationResult = require('express-validator/check')['validationResult'];
-const clientService = require('../services/client.service');
+const clientsService = require('../services/client.service');
 
 const clientController = {
 
@@ -8,7 +8,7 @@ const clientController = {
         try {
 
             let { query } = req;
-            let data = await clientService.findAllClients();
+            let data = await clientsService.findAllClients();
 
 
             let responseBundle = { data };
@@ -25,7 +25,7 @@ const clientController = {
         try {
 
             let { id } = req.params;
-            let data = await clientService.findOneClient(id);
+            let data = await clientsService.findOneClient(id);
 
 
             let responseBundle = { data };
@@ -37,13 +37,28 @@ const clientController = {
         }
     },
 
+    async getClientsTotalCount(req, res) {
+
+        try {
+
+            const clientsTotalCount = await clientsService.countClients();
+
+            let responseBundle = { data: clientsTotalCount }
+
+            res.status(200).send(responseBundle)
+
+        } catch (err) {
+            res.status(400).send(err);
+        }
+    
+    },
+
     async postCreateClient(req, res) {
 
         try {
 
             let { body } = req;
-            let data = await clientService.createClient(body);
-
+            let data = await clientsService.createClient(body);
 
             let responseBundle = { new_client: data };
 
