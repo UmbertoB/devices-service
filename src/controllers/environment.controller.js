@@ -11,9 +11,7 @@ const environmentController = {
             let data = await environmentService.createEnvironment(body);
 
 
-            let responseBundle = { data };
-
-            res.status(200).send(responseBundle);
+            res.status(200).send({ new_environment: data });
 
         } catch (err) {
             res.status(400).send({ error: true, msg: err.name });

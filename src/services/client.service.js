@@ -5,7 +5,16 @@ const ClientService = {
 
     findAllClients() {
 
-        return db.client.findAll({include: [{ model: db.address}, { model: db.environment, include: [db.device]}]});
+        return db.client.findAll({ include: [{ model: db.address }, { model: db.environment, include: [{ model: db.device, include: [db.message] }] }] });
+
+    },
+
+    findOneClient(id) {
+
+        return db.client
+            .findByPk(id, {
+                include: [db.environment, db.address]
+            });
 
     },
 

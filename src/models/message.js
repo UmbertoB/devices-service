@@ -7,7 +7,9 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {});
   message.associate = function(models) {
-    // associations can be defined here
+
+    message.belongsTo(models.device, { foreignKey: 'deviceId', allowNull: false });
+
   };
   return message;
 };

@@ -10,10 +10,7 @@ const messageController = {
             let { body } = req;
             let data = await messageService.createMessage(body);
 
-
-            let responseBundle = { data };
-
-            res.status(200).send(responseBundle);
+            res.status(200).send({ new_message: data });
 
         } catch (err) {
             res.status(400).send({ error: true, msg: err.name });

@@ -8,6 +8,7 @@ const messageService = {
         return db.message.create(
             {
                 temperature: params.temperature,
+                deviceId: params.deviceId
             }
         );
 
