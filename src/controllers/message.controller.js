@@ -3,6 +3,24 @@ const messageService = require('../services/message.service');
 
 const messageController = {
 
+    async getMessagesList(req, res) {
+
+        try {
+
+            let { deviceId } = req.params;
+            let data = await messageService.findAllMessages({ deviceId });
+
+
+            let responseBundle = { data };
+
+            res.status(200).send(responseBundle);
+
+        } catch (err) {
+            res.status(400).send({ error: true, msg: err.name });
+        }
+
+    },
+
     async postCreateMessage(req, res) {
 
         try {

@@ -5,7 +5,8 @@ const deviceService = {
 
     findAllDevices() {
 
-        return db.device.findAll({ include: [{ model: db.environment } ]});
+        return db.device.findAll({ include: [db.environment]});
+
     }
 }
 

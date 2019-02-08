@@ -1,16 +1,32 @@
 'use strict';
+const messageService = require('../services/message.service');
+
 
 module.exports = function (io, app) {
 
-    setInterval(() => {
+    io.on('connection', (socket) => {
 
-        io.emit('message-received', {
-            device: 34,
-            temperature: 25,
-            created_at: '2019-02-06T16:41:56.000Z'
+        console.log('connected');
+        
+
+        socket.on('disconnect', function () {
+
+            console.log('disconnected');
         });
 
-    }, 3000);
+        socket.on('message-sent', async (message) => {
+
+            io.emit('update-dashboard', message);
+            
+            await messageService.createMessage(message)
+        });
+
+
+        io.emit('dale')
+
+    });
+
+
 
 
 

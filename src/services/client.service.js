@@ -13,7 +13,7 @@ const ClientService = {
 
         return db.client
             .findByPk(id, {
-                include: [db.environment, db.address]
+                include: [ { model: db.environment, include: [{ model: db.device, include: [db.message] }] }, db.address]
             });
 
     },
