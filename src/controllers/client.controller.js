@@ -1,5 +1,7 @@
 const validationResult = require('express-validator/check')['validationResult'];
 const clientsService = require('../services/client.service');
+const listMetaBuilder = require('../utils/builders/list-meta.builder');
+
 
 const clientController = {
 
@@ -8,14 +10,19 @@ const clientController = {
         try {
 
             let { query } = req;
-            let data = await clientsService.findAllClients();
+            let data  = await clientsService.findAndCountAllClients(query);
+            const total = await clientsService.countClients();
+            const count = data.length;
 
+            const meta = listMetaBuilder(total, count, query.limit, query.page);
 
-            let responseBundle = { data };
+            let responseBundle = { data, meta };
 
             res.status(200).send(responseBundle);
 
         } catch (err) {
+            console.log(err);
+            
             res.status(400).send({ error: true, msg: err.name });
         }
     },

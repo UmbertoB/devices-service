@@ -1,11 +1,17 @@
 const db = require("../models/index.js");
+const listQueryBuilder = require('../utils/builders/list-query.builder');
+
 
 
 const ClientService = {
 
-    findAllClients() {
+    findAndCountAllClients(queryParams) {
 
-        return db.client.findAll({ include: [{ model: db.address }, { model: db.environment, include: [{ model: db.device, include: [db.message] }] }] });
+        let queryBuilder = listQueryBuilder(queryParams);
+
+        queryBuilder = {...queryBuilder, include: [{ model: db.address }, { model: db.environment, include: [{ model: db.device, include: [db.message] }] }] }
+
+        return db.client.findAll(queryBuilder);
 
     },
 

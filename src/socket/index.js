@@ -7,17 +7,17 @@ module.exports = async function(io) {
     io.use(tokenGuardSocket).on('connection', (socket) => {
 
 
-        console.log('connected');
-        
-
         socket.on('message-sent', async (message) => {
 
             io.emit('update-dashboard', message);
-
-            await messageService.createMessage(message)
+        
+            try {
+                await messageService.createMessage(message)
+            } catch (err) {
+                console.log(err.name);
+            }
 
         });
-
 
         
         socket.on('new-environment', (environment) => {
