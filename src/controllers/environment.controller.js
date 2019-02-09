@@ -55,6 +55,28 @@ const environmentController = {
         }
     },
 
+    /**
+    * DELETE ENVIRONMENT (filtered by client or not)
+    * Creates a environment bounded to a client
+    * @param {Request} req 
+    * @param {Response} res 
+    */
+    async deleteEnvironment(req, res) {
+
+        try {
+
+            const { id } = req.params;
+            const deleted_environment = await environmentService.deleteEnvironment(id);
+
+            res.status(200).send({ deleted_environment });
+
+        } catch (err) {
+            console.log(err);
+            
+            res.status(400).send({ error: true, msg: err.name });
+        }
+    },
+
 }
 
 module.exports = environmentController;

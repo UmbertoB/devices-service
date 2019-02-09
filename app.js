@@ -26,7 +26,7 @@ app.use(tokenGuard());
 
 routers(app);
 
-socket(io, app);
+socket(io);
 
 
 http.listen(process.env.PORT || port, () => {

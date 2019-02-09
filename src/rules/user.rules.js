@@ -4,15 +4,10 @@ const db = require('../models/index');
 
 const userRules = {
   forRegister: [
-    check('name')
-      .isAlpha().withMessage('Nome inválido'),
 
     check('email')
       .isEmail().withMessage('Formato de email inválido')
       .custom(email =>  db.user.findOne({ where: { email } }).then(user => !!!user)).withMessage('Este email já está cadastrado'),
-
-    check('password')
-      .isLength({ min: 6 }).withMessage('Senha inválida'),
 
     check('confirm_password')
       .custom((confirm_password, { req }) => req.body.password === confirm_password).withMessage('As senhas são diferentes')

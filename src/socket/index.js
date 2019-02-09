@@ -1,29 +1,11 @@
 'use strict';
-const environmentSocket = require('./environment.socket');
-const messageSocket = require('./message.socket');
 const tokenGuardSocket = require('../middlewares/token-guard.socket');
 const messageService = require('../services/message.service');
 
-module.exports = function (io, app) {
+module.exports = async function(io) {
 
     io.use(tokenGuardSocket).on('connection', (socket) => {
 
-        console.log('connected');
-
-        socket.on('disconnect', function (socket) {
-
-            console.log('disconnected');
-
-        });
-
-        /**
-         * Event for Active or Deactivate Devices
-         */
-        socket.on('devices-signal', async (signal) => {
-
-            io.emit('devices-status', signal);
-
-        });
 
         socket.on('message-sent', async (message) => {
 
@@ -34,23 +16,24 @@ module.exports = function (io, app) {
         });
 
 
+        
         socket.on('new-environment', (environment) => {
-
             const device = {
                 id: environment.id,
                 environment: {
                     id: environment.id,
                     title: environment.title,
-                    clientId: environment.clientId
+                    clientId: environment.clientId,
                 }
             }
-
-            io.emit('update-devices', device);
-
+            io.emit('add-device', device);
+        });
+        socket.on('deleted-environment', (environmentId) => {
+            io.emit('delete-device', environmentId);
         });
 
 
-});
+    });
 
 
 

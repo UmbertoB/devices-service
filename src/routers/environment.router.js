@@ -8,4 +8,6 @@ environmentRouter.get('/counter', environmentController.getClientEnvironmentsTot
 
 environmentRouter.post('/', environmentController.postCreateEnvironment);
 
+environmentRouter.delete('/:id/delete', environmentController.deleteEnvironment);
+
 module.exports = environmentRouter;

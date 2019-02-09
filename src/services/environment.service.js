@@ -5,11 +5,19 @@ const environmentService = {
 
     findAllEnvironments(clientId) {
 
-        return db.environment.findAll( {
-            where: { clientId }, 
+        return db.environment.findAll({
+            where: { clientId },
             include: [{ model: db.device, include: [db.message] }]
         });
 
+
+    },
+
+    countEnvironments(id) {
+
+        const option = { where: { clientId: id } };
+
+        return db.environment.count(id ? option : {});
 
     },
 
@@ -21,17 +29,23 @@ const environmentService = {
                 clientId: params.clientId,
                 device: {}
 
-            }, { include: [db.device]});
+            }, { include: [db.device] });
 
     },
 
-    countEnvironments(id) {
+    deleteEnvironment(id) {
+
+
+        return db.message.destroy({
+            where: { deviceId: id }
+        }).then(() => {
+            return db.device.destroy({
+                where: { id }
+            });
+        });
         
-        const option = { where: { clientId: id } };
-
-        return db.environment.count( id ? option : {});
-
     }
+
 
 }
 

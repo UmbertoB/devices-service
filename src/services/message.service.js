@@ -3,9 +3,9 @@ const db = require("../models/index.js");
 
 const messageService = {
 
-    findAllMessages({ deviceId }) {
+    findAllClientMessages({ clientId }) {
 
-        return db.message.findAll({ where: { deviceId }});
+        return db.message.findAll({ order: [ [ 'createdAt', 'DESC' ] ], include: [ { model: db.device, attributes: ['id'] , include: [ { model: db.environment, attributes: ['id', 'clientId'], where: { clientId } } ]} ]});
 
     },
 

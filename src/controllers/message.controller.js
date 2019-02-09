@@ -7,11 +7,12 @@ const messageController = {
 
         try {
 
-            let { deviceId } = req.params;
-            let data = await messageService.findAllMessages({ deviceId });
+            let { clientId } = req.params;
+            let messages = await messageService.findAllClientMessages({ clientId });
 
+            messages = messages.filter(message => message.device )
 
-            let responseBundle = { data };
+            let responseBundle = { data: messages };
 
             res.status(200).send(responseBundle);
 
