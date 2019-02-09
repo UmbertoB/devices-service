@@ -3,13 +3,14 @@ const db = require("../models/index.js");
 
 const environmentService = {
 
-    findAllEnvironments(clientId) {
+    findAllEnvironments(clientId) { 
 
-        return db.environment.findAll({
-            where: { clientId },
-            include: [{ model: db.device, include: [db.message] }]
-        });
+        let queryOptions = { include: [{ model: db.device, include: [db.message] }] };
+        if (clientId) {
+            queryOptions = { ...queryOptions, where: { clientId }}; 
+        }
 
+        return db.environment.findAll(queryOptions);
 
     },
 
@@ -27,7 +28,7 @@ const environmentService = {
             {
                 title: params.title,
                 clientId: params.clientId,
-                device: {}
+                device: { updateTime: params.updateTime }
 
             }, { include: [db.device] });
 

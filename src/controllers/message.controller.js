@@ -3,14 +3,31 @@ const messageService = require('../services/message.service');
 
 const messageController = {
 
-    async getMessagesList(req, res) {
+    async getClientMessagesList(req, res) {
 
         try {
 
             let { clientId } = req.params;
             let messages = await messageService.findAllClientMessages({ clientId });
 
-            messages = messages.filter(message => message.device )
+            messages = messages.filter(message => message.device)
+
+            let responseBundle = { data: messages };
+
+            res.status(200).send(responseBundle);
+
+        } catch (err) {
+            res.status(400).send({ error: true, msg: err.name });
+        }
+
+    },
+
+    async getDeviceMessagesList(req, res) {
+
+        try {
+
+            let { deviceId } = req.params;
+            let messages = await messageService.findAllDeviceMessages({ deviceId });
 
             let responseBundle = { data: messages };
 

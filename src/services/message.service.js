@@ -9,6 +9,12 @@ const messageService = {
 
     },
 
+    findAllDeviceMessages({ deviceId }) {
+
+        return db.message.findAll({ order: [ [ 'createdAt', 'DESC' ] ], where: { deviceId } });
+
+    },
+    
     createMessage(params) {
 
         return db.message.create(

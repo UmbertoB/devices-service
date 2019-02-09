@@ -4,5 +4,7 @@ const deviceRouter = Router()
 
 deviceRouter.get('/', deviceController.getDeviceList);
 
+deviceRouter.get('/paginated', deviceController.getPaginatedDevicesList);
+
 
 module.exports = deviceRouter;

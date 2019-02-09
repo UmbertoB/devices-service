@@ -23,6 +23,7 @@ module.exports = async function(io) {
         socket.on('new-environment', (environment) => {
             const device = {
                 id: environment.id,
+                updateTime: environment.device.updateTime,
                 environment: {
                     id: environment.id,
                     title: environment.title,
