@@ -1,7 +1,7 @@
-const Router = require('express')
+const Router = require('express');
 const userRules = require('../rules/user.rules');
 const UsersController = require('../controllers/users.controller');
-const userRouter = Router()
+const userRouter = Router();
 
 userRouter.post('/register', userRules['forRegister'], UsersController.register);
 

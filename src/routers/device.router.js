@@ -1,6 +1,6 @@
-const Router = require('express')
+const Router = require('express');
 const deviceController = require('../controllers/device.controller');
-const deviceRouter = Router()
+const deviceRouter = Router();
 
 deviceRouter.get('/', deviceController.getDeviceList);
 

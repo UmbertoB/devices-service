@@ -1,6 +1,4 @@
-
-
-var jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 const _jwtSecret = '0.rfyj3n9nzh';
 
 module.exports = function (socket, next) {

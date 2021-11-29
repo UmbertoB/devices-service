@@ -1,6 +1,6 @@
-const Router = require('express')
+const Router = require('express');
 const environmentController = require('../controllers/environment.controller');
-const environmentRouter = Router()
+const environmentRouter = Router();
 
 environmentRouter.get('/', environmentController.getEnvironmentsList);
 

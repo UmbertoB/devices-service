@@ -1,6 +1,6 @@
-const Router = require('express')
+const Router = require('express');
 const messageController = require('../controllers/message.controller');
-const messageRouter = Router()
+const messageRouter = Router();
 
 messageRouter.get('/:clientId/clients', messageController.getClientMessagesList);
 

@@ -1,10 +1,11 @@
 const Sequelize = require('sequelize');
 const env = process.env.NODE_ENV || 'development';
-const config = require(__dirname + '/config/config.json')[env];
 
-const connection = new Sequelize(config.database, config.username, config.password, {
-  host: config.host,
-  dialect: config.dialect,
+const { DB_HOST, DB_DIALECT, DB_NAME, DB_USER, DB_PASSWORD } = process.env;
+
+const connection = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
+  host: DB_HOST,
+  dialect: DB_DIALECT,
   operatorsAliases: false,
 
   logging: false,
