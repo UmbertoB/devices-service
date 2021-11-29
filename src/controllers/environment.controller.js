@@ -1,4 +1,3 @@
-const validationResult = require('express-validator/check')['validationResult'];
 const environmentService = require('../services/environment.service');
 
 const environmentController = {

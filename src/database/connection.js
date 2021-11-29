@@ -1,5 +1,4 @@
 const Sequelize = require('sequelize');
-const env = process.env.NODE_ENV || 'development';
 
 const { DB_HOST, DB_DIALECT, DB_NAME, DB_USER, DB_PASSWORD } = process.env;
 
