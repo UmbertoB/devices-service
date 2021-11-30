@@ -30,7 +30,7 @@ const environmentService = {
                 clientId: params.clientId,
                 device: { updateTime: params.updateTime }
 
-            }, { include: [db.device] });
+            }, { include: [db.device, db.client] });
 
     },
 

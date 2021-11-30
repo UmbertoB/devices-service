@@ -6,6 +6,7 @@ module.exports = async function(io) {
 
     io.use(tokenGuardSocket).on('connection', (socket) => {
 
+
         socket.on('message-sent', async (message) => {
 
             io.emit('update-dashboard', message);
@@ -25,16 +26,23 @@ module.exports = async function(io) {
                 environment: {
                     id: environment.id,
                     title: environment.title,
+                    clientId: environment.clientId,
                     client: environment.client
                 }
             }
             io.emit('add-device', device);
         });
-
         socket.on('deleted-environment', (environmentId) => {
             io.emit('delete-device', environmentId);
         });
 
+
     });
 
+
+
+
+
+
 };
+
